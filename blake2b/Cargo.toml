@@ -1,0 +1,16 @@
+[package]
+name = "blake2b"
+version = "0.1.0"
+authors = ["cdetrio <cdetrio@gmail.com>"]
+
+[lib]
+path = "src/blake2.rs"
+crate-type = ["cdylib"]
+
+[dependencies]
+blake2-rfc = { git = "https://github.com/cesarb/blake2-rfc" }
+data-encoding = "2.0.0"
+
+[patch.crates-io]
+rustc-serialize = { git = "https://github.com/cdetrio/rustc-serialize", branch = "for-wasm" }
+num-bigint = { git = "https://github.com/ignatenkobrain/num-bigint", branch = "rand-v0.4" }
