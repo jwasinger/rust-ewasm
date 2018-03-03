@@ -1,14 +1,7 @@
-//#![no_std]
+#![no_std]
 
 use blake2_rfc::blake2b::Blake2b;
 use blake2_rfc::_selftest_seq as selftest_seq;
-
-use std::iter::repeat;
-use std::vec::Vec;
-
-
-extern crate data_encoding;
-use self::data_encoding::HEXUPPER;
 
 // bn128 point addition copied from https://github.com/ethereumjs/rustbn.js
 
@@ -27,7 +20,7 @@ pub fn main() {
 	for _ in 0..1048576 {
 			state.update(&ZEROS);
 	}
-	assert_eq!(&state.finalize(), &HEXUPPER.decode(
-			b"745572CA5756F9104329ED543735FC11904F0C18C4DF8ADF930F22D07F3094919A519FF34FD240AE3F5D5B4C8042225C109FB951036FDC99E7D2CD0C1D36B267")
-			.unwrap()[..]);
+
+  let result: [u8; 4] = [0xff, 0xff, 0xff, 0xff];
+	assert_eq!(state.finalize().as_bytes(), &result);
 }
